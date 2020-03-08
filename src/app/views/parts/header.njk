@@ -1,0 +1,43 @@
+<header>
+
+  <div class="container">
+    <a href="">
+      <div class="logo">
+        <h1>E-commerce</h1>
+        <h2>A LOJA DA SIMPLICIDADE</h2>
+      </div>
+    </a>
+
+    <form class="search" action="/products/search" method="GET">
+      <input 
+        name="filter" 
+        type="text"
+        placeholder="Buscar produtos"
+        {% if search.term %}
+        value="{{ search.term }}"
+        {% endif%}
+        >
+    </form>
+    <nav class="primary">
+      <ul>
+
+        <li> 
+          <a href="/ads/create">
+            <i class="material-icons">add</i>
+            Anunciar produto
+          </a>
+        </li>
+
+        <li>
+          <a href="/ads/accounts">
+            <i class="material-icons">account_circle</i>
+            Minha conta
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+
+  </div>
+
+</header>
