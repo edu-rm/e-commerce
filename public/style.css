@@ -2,7 +2,7 @@
 
 :root{
   --primary-color: #66ff33;
-  --secondary-color: #e60073;
+  --secondary-color: #8a0c5e;
 }
 *{
   margin: 0;
@@ -26,6 +26,35 @@ body{
   width: 90%;
   max-width: 1000px;
   margin: 0 auto;
+}
+
+.button{
+  background-color: var(--secondary-color);
+  color: #eee;
+  font-weight: bold;
+  font-size: 12px;
+  text-transform: uppercase;
+  text-align: center;
+
+
+  display: block;
+  margin: 12px 0;
+  padding:16px 12px;
+  width: 100%;
+  /*Para colocar para baixo*/
+  align-self: end;
+
+
+  border-radius: 4px;
+  box-shadow: 2px 2px 3px 1px rgba(0,0,0,0.2);
+  cursor: pointer;
+
+  transition: all 300ms;
+
+}
+
+.button:hover{
+  background-color: #8a0c5eee;
 }
 
 /*HEADER*/
@@ -97,6 +126,88 @@ nav.primary ul li a i{
   margin-right: 8px;
 }
 
-
+/*FORM CADASTRO CREATE*/
  
+section form{
+  background-color: white;
+
+  padding: 36px 24px;
+  margin:32px auto;
+
+  box-shadow: 2px 2px 7px -4px rgba(0,0,0,0.2);
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: 4px;
+
+  max-width: 700px;
+  width: 90%;
+}
+
+ section.form .header h3{
+   font-size: 16px;
+   line-height: 24px;
+   letter-spacing: 0.7px;
+   text-transform: uppercase;
+   font-weight: bold;
+   color:var(--secondary-color);
+   margin-bottom: 13px;
+ }
+
+ .fields .item{
+  margin-bottom: 16px;
+ }
+
+ .fields .item > div:nth-child(1){
+   color:rgba(0,0,0,0.9);
+   font-weight: bold;
+   text-transform: uppercase;
+   font-size: 16px;
+   margin: 8px 0;
+   
+  }
+
+ form .item input[type="text"],
+ form .item input[type="number"],
+ form .item textarea,
+ form .item select,
+ form .item input[type="radio"]{
+  width: 100%;
+  padding: 8px 16px;
+  box-shadow: 3px 3px 2px -3px rgba(0,0,0,0.2);
+  border: 1px solid rgba(0,0,0,0.2); 
+  border-radius: 4px;
+  font-size: 16px;
+ }
+ 
+ form .item select{
+   -moz-appearance: none;
+   -webkit-appearance: none;
+   appearance: none;
+
+   /*icone lateral*/
+   background-color: white;
+   background-repeat: no-repeat;
+   background-size: .65em auto,100%;
+   background-position: right .7em top 50%, 100%;
+   background-image: urL('https://toppng.com/public/uploads/preview/arrow-down-icon-11549436707mosicxsqad.png'),
+    linear-gradient(to bottom, white 0%, #eee);
+
+ }
+
+ form .item:last-child div:nth-child(2){
+  display: flex;
+  align-items: center;
+ }
+ form .item:last-child div span{
+  display: inline;
+  padding-right: 32px;
+  margin: 8px 0;
+ }
+ 
+ form .item textarea{
+   min-height: 150px;
+ }
+
+form .fields {
+  margin-bottom: 64px;
+}
  
