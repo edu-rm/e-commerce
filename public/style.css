@@ -1,10 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap');
+
+:root{
+  --primary-color: #66ff33;
+  --secondary-color: #e60073;
+}
 *{
   margin: 0;
   padding: 0;
   text-decoration: none;
   list-style-type: none;
   box-sizing: border-box;
+  border: none;
 } 
 
 html,body{
@@ -16,6 +22,13 @@ body{
   background-color: #FFFFE0;
 }
 
+.container{
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/*HEADER*/
 header, footer{
   background-color: black;
   color: white;
@@ -37,5 +50,53 @@ header div.container a{
   justify-self: start;
 }
 
+/*LOGO*/
 
+.logo h1{
+  color: white;
+  font-size: 32px;
+  line-height: 40px;
+  text-transform: uppercase;
+}
+
+.logo h2{
+  color:var(--primary-color) ;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 2px;
+}
+
+
+/*HEADER SERACH*/
+.search input{
+  width: 100%;
+  padding: 8px 16px;
+  border-radius: 3px;
+  font-size: 16px;
+}
+
+/*PRIMARY MENU*/
+
+nav.primary ul{
+  display: flex;
+  justify-content: space-between;
+}
+
+nav.primary ul li a{
+  display: flex;
+  align-items: center;
+  color: white;
+}
+nav.primary ul li a:hover{
+  color: var(--primary-color);
+
+  transition: 300ms;
+}
+
+nav.primary ul li a i{
+  margin-right: 8px;
+}
+
+
+ 
  
