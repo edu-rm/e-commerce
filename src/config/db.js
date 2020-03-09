@@ -6,5 +6,5 @@ module.exports = new Pool({
     password : 'toor',
     host: 'localhost',
     port: 5432,
-    database : 'e-commerce'
+    database : 'ecommerce'
 })
