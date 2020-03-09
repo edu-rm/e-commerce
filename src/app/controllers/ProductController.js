@@ -37,13 +37,50 @@ module.exports = {
     if(!product) return res.send("Product not found")
 
     product.price = formatPrice(product.price)
-    product.old_price = formatPrice(product.old_price)
+    
 
     results = await Category.all()
     const categories = results.rows
 
     return res.render('products/edit', {product, categories})
 
+
+  },
+  async put(req,res){
+    const keys = Object.keys(req.body)
+
+    for (key of keys){
+      if(key == ""){
+        return res.send("Please, fill all the filds")
+      }
+    }
+
+    let {id, category_id, user_id, name, description ,price, old_price, quantity, status} = req.body
+    
+    price = price.replace(/\D/g, "")
+
+    if(price !== old_price){
+      const oldPrice = await Product.find(id)
+      old_price = oldPrice.rows[0].price
+    }
+    
+
+    const values = [
+      category_id,
+      1 || user_id,
+      name,
+      description,
+      old_price,
+      price,
+      quantity,
+      status,
+      id
+    ]
+
+
+    const product = await Product.update(values)
+    
+    return res.redirect(`products/${id}/edit`)
 
   }
 }

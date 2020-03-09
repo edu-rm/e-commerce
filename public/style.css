@@ -75,6 +75,7 @@ header, footer{
   text-align: center;
 }
 
+
 header div.container{
   display: grid;
   grid-template-columns: 220px auto 280px;
