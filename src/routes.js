@@ -9,7 +9,7 @@ routes.get('/products/create', ProductController.create )
 routes.post('/products', ProductController.post)
 routes.get('/products/:id/edit', ProductController.edit)
 routes.put('/products', ProductController.put)
-routes.delete('/products', ProductControler.delete)
+routes.delete('/products', ProductController.delete)
 //alias
 routes.get('/ads/create', function(req, res){
   return res.redirect("/products/create")

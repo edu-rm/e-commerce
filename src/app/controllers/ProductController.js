@@ -82,5 +82,12 @@ module.exports = {
     
     return res.redirect(`products/${id}/edit`)
 
+  },
+  async delete(req,res){
+    const { id } = req.body
+
+    await Product.delete(id)
+    res.redirect('/')
+
   }
 }

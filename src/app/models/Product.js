@@ -51,5 +51,13 @@ module.exports = {
 
     return db.query(query, data)
   },
-  
+  delete(id){
+
+    query = `
+      DELETE FROM products 
+      WHERE id = $1
+    `
+    return db.query(query, [id])
+
+  }
 }
