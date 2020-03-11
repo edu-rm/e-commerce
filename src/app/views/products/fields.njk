@@ -2,14 +2,14 @@
   <div>Categoria</div>
   <div>
     <select name="category_id" >
-     
+
       {% for category in categories %}
       <option value="{{ category.id }}"
         {% if product.category_id == category.id %}selected{% endif %}>
         {{ category.name }}
       </option>
       {%endfor%}
-    
+
     </select>
   </div>
 </div>
@@ -17,8 +17,8 @@
 <div class="item">
   <div>Nome</div>
     <div>
-      <input 
-        type="text" 
+      <input
+        type="text"
         name="name"
         placeholder="Digite o título do anúncio"
         value="{{ product.name }}"
@@ -34,15 +34,32 @@
 </div>
 
 <div class="item">
+  <div>Imagens</div>
+    <div>
+      <div id="photos-upload">
+        <input 
+          type="file" 
+          name="photos" 
+          multiple
+          id="photos-input"
+          accept="image/*"> 
+          <p>Selecione até 6 fotos</p>
+      </div>
+      <div class="photos-preview">
+      </div>
+    </div>
+</div>
+
+<div class="item">
   <div>Valor</div>
     <div>
-      <input 
+      <input
         type="text"
         name="price"
         placeholder="Digite o preço"
         value="{{ product.price }}"
         onkeydown="Mask.apply(this, 'formatBRL')"
-        >  
+        >
     </div>
     {% if product.old_price%}
       <input type="hidden" name="old_price" value="{{ product.old_price }}">
@@ -52,8 +69,8 @@
 <div class="item">
   <div>Quantidade</div>
     <div>
-      <input 
-        type="number" 
+      <input
+        type="number"
         name="quantity"
         placeholder="Unidades de estoque"
         value="{{ product.quantity }}"
@@ -64,20 +81,20 @@
   <div>Disponível ?</div>
   <div>
     <span>
-      <input 
+      <input
       id="op"
-      type="radio" 
-      name="status" 
-      value="1" 
+      type="radio"
+      name="status"
+      value="1"
       {% if product.status == 1 %}
       checked
       {% endif %}><label for="op">Sim</label>
     </span>
     <span>
       <input
-      id="op2" 
-      type="radio" 
-      name="status" 
+      id="op2"
+      type="radio"
+      name="status"
       value="0"
       {% if product.status == 0 %}
       checked
