@@ -18,38 +18,65 @@ const Mask = {
 }
 
 const PhotosUpload = {
+  preview: document.querySelector('#photos-preview'),
   uploadLimit : 6,
   handleFileInput(event){
+    
     const {files : fileList } = event.target
     
-    const { uploadLimit } = PhotosUpload
-    const photoPreview = document.querySelector('#photos-preview')
-    
-    if(fileList.length > uploadLimit){
-      alert(`Você pode enviar até ${uploadLimit} fotos`)
-      event.preventDefault()
-      return
-    }
+    if (PhotosUpload.hasLimit(event)) return
+
     Array.from(fileList).forEach(file =>{
-      const reader = new FileReader()
+      const reader = new FileReader() /*IMG blob */
 
       reader.onload = ()=>{
         const img = new Image()/*<img> */
         img.src = String(reader.result)
 
-        const div = document.createElement('div')
-        div.classList.add('photo')
+        const div = PhotosUpload.getContainer(img)
 
-        div.onclick = () => alert('cliquei')
-        
-        div.appendChild(img)
-        photoPreview.appendChild(div)
-
+        PhotosUpload.preview.appendChild(div)
       }
 
       reader.readAsDataURL(file)
     })
 
+  },
+  hasLimit(event){
+    const { uploadLimit } = PhotosUpload
+        
+    if(event.target.files.length > uploadLimit){
+      alert(`Você pode enviar até ${uploadLimit} fotos`)
+      event.preventDefault()
+      return true
+    }
+
+    return false
+  },
+  getContainer(img){
+
+    const div = document.createElement('div')
+
+    div.classList.add('photo')
+
+    div.onclick = PhotosUpload.removePhoto
+        
+    div.appendChild(img)
+    div.appendChild(PhotosUpload.getRemoveButton())
+    return div
+  },
+  getRemoveButton(){
+    const button = document.createElement('i')
+    button.classList.add('material-icons')
+    button.innerHTML = 'close'
+    return button
+  },
+  removePhoto(event){
+    const photoDiv = event.target.parentNode /*Vai ser o i, ele está acima de todos */
+    const photosArray = Array.from(PhotosUpload.preview.children)
+    const index = photosArray.indexOf(photoDiv)
+    
+    photoDiv.remove()
   }
 }
 
