@@ -14,20 +14,28 @@ const Mask = {
       currency : 'BRL'
     }).format(value/100)
 
-  } 
+  }
 }
 
 const PhotosUpload = {
+  input : "",
   preview: document.querySelector('#photos-preview'),
   uploadLimit : 6,
+  files : [
+
+  ],
   handleFileInput(event){
-    
+    PhotosUpload.input = event.target
     const {files : fileList } = event.target
-    
+
     if (PhotosUpload.hasLimit(event)) return
 
     Array.from(fileList).forEach(file =>{
+      PhotosUpload.files.push(file)
+
+      
       const reader = new FileReader() /*IMG blob */
+      
 
       reader.onload = ()=>{
         const img = new Image()/*<img> */
@@ -41,17 +49,26 @@ const PhotosUpload = {
       reader.readAsDataURL(file)
     })
 
+    event.target.files = PhotosUpload.getAllFiles()
+
   },
   hasLimit(event){
-    const { uploadLimit } = PhotosUpload
-        
-    if(event.target.files.length > uploadLimit){
+    const { uploadLimit, input: fileList } = PhotosUpload
+
+    if(fileList.files.length > uploadLimit){
       alert(`Você pode enviar até ${uploadLimit} fotos`)
       event.preventDefault()
       return true
     }
 
     return false
+  },
+  getAllFiles(){
+    const dataTransfer = new ClipboardEvent("").clipboardData || new DataTransfer()
+    
+    PhotosUpload.files.forEach(file => dataTransfer.items.add(file))
+
+    return dataTransfer.files
   },
   getContainer(img){
 
@@ -60,7 +77,7 @@ const PhotosUpload = {
     div.classList.add('photo')
 
     div.onclick = PhotosUpload.removePhoto
-        
+
     div.appendChild(img)
     div.appendChild(PhotosUpload.getRemoveButton())
     return div
@@ -72,11 +89,16 @@ const PhotosUpload = {
     return button
   },
   removePhoto(event){
-    const photoDiv = event.target.parentNode /*Vai ser o i, ele está acima de todos */
+    const photoDiv = event.target.parentNode // <div class photo> pai do <i>
     const photosArray = Array.from(PhotosUpload.preview.children)
     const index = photosArray.indexOf(photoDiv)
+
+    PhotosUpload.files.splice(index, 1)
+    PhotosUpload.input.files = PhotosUpload.getAllFiles()
     
     photoDiv.remove()
+
+
   }
 }
 
