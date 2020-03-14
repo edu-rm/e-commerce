@@ -1,5 +1,8 @@
 const Category = require("../models/Category")
 const Product = require("../models/Product")
+const File = require('../models/File')
+
+
 const { formatPrice } = require("../../lib/utils")
 module.exports = {
   create(req, res){
@@ -22,8 +25,15 @@ module.exports = {
       }
     }
 
+    if (req.files.lenght) return res.send("Please, send at least one image")
+    
+
+
     let results = await Product.insert(req.body)
     const productId = results.rows[0].id
+    console.log(req.files)
+    const filesPromise = req.files.map(file => File.insert(file.filename, file.path, productId))
+    await Promise.all(filesPromise)
 
 
     return res.redirect(`/products/${productId}/edit`)
