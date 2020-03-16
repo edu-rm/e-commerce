@@ -25,14 +25,19 @@ module.exports = {
       }
     }
 
-    if (req.files.lenght) return res.send("Please, send at least one image")
+    if (req.files.lenght == 0) return res.send("Please, send at least one image")
     
 
 
     let results = await Product.insert(req.body)
     const productId = results.rows[0].id
+
     console.log(req.files)
-    const filesPromise = req.files.map(file => File.insert(file.filename, file.path, productId))
+
+    const filesPromise = req.files.map(file => File.insert({
+      ...file,
+      product_id : productId
+    })) // map retorna um array
     await Promise.all(filesPromise)
 
 

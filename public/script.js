@@ -21,9 +21,7 @@ const PhotosUpload = {
   input : "",
   preview: document.querySelector('#photos-preview'),
   uploadLimit : 6,
-  files : [
-
-  ],
+  files : [],
   handleFileInput(event){
     PhotosUpload.input = event.target
     const {files : fileList } = event.target
@@ -49,7 +47,7 @@ const PhotosUpload = {
       reader.readAsDataURL(file)
     })
 
-    event.target.files = PhotosUpload.getAllFiles()
+    PhotosUpload.input.files = PhotosUpload.getAllFiles()
 
   },
   hasLimit(event){

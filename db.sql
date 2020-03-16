@@ -19,9 +19,9 @@ CREATE TABLE "categories" (
 
 CREATE TABLE "files" (
   "id" SERIAL PRIMARY KEY,
-  "name" integer,
+  "name" text,
   "path" text NOT NULL,
-  "product_id" integer UNIQUE
+  "product_id" integer 
 );
 
 ALTER TABLE "products" ADD FOREIGN KEY ("category_id") REFERENCES "categories" ("id");

@@ -11,8 +11,8 @@ routes.get('/', function(req,res){
 
 routes.get('/products/create', ProductController.create )
 routes.post('/products', multer.array("photos", 6), ProductController.post)
-routes.get('/products/:id/edit',multer.array("photos", 6), ProductController.edit)
-routes.put('/products', ProductController.put)
+routes.put('/products', multer.array("photos", 6),ProductController.put)
+routes.get('/products/:id/edit', ProductController.edit)
 routes.delete('/products', ProductController.delete)
 
 
