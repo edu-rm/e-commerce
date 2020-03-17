@@ -71,10 +71,22 @@ module.exports = {
     const keys = Object.keys(req.body)
 
     for (key of keys){
-      if(key == ""){
+      if(key == "" && key != 'removed_files'){
         return res.send("Please, fill all the filds")
       }
     }
+
+    if(req.body.removed_files){
+      const removedFiles = req.body.removed_files.split(",")
+    
+      removedFiles.splice(-1)
+
+      const removedFilesPromise = removedFiles.map(id => File.delete(id))
+
+      await Promise.all(removedFilesPromise)
+
+    }
+
 
     let {id, category_id, user_id, name, description ,price, old_price, quantity, status} = req.body
     

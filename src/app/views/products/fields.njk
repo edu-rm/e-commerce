@@ -53,12 +53,13 @@
               <img src="{{ image.src }}" alt="{{ image.name }}">
               <i 
                 class="material-icons"
-                
+                onclick="PhotosUpload.removeOldPhoto(event)"
               >
-              close
+              delete
               </i>
             </div>
           {% endfor %}
+          <input type="hidden" name="removed_files">
         {% endif %}
       </div>
     </div>
