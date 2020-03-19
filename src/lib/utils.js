@@ -4,6 +4,8 @@ module.exports = {
         const year = date.getUTCFullYear()
         const month = `0${date.getUTCMonth()+1}`.slice(-2)
         const day = `0${date.getUTCDate()}`.slice(-2)
+        const hour = date.getHours()
+        const minute = date.getMinutes()
 
 
         return {
@@ -11,6 +13,8 @@ module.exports = {
             day,
             month,
             year,
+            hour,
+            minute,
             birthday : `${day}/${month}`,
             formatCreatedAt : `${day}/${month}/${year}`
         }
